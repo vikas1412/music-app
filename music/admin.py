@@ -1,3 +1,5 @@
 from django.contrib import admin
+from music.models import Music, Genre, Album, Band, Label
 
-# Register your models here.
+
+admin.site.register((Music, Genre, Album, Band, Label))
