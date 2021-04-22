@@ -9,4 +9,6 @@ urlpatterns = [
 
     path("new/genre/", views.GenreCreate.as_view(), name="new-genre"),
 
+    path("new/label/", views.NewLabel.as_view(), name="new-label"),
+
 ]

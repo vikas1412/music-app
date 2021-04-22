@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.views import generic
 
 from music.forms import SignupForm
-from music.models import Genre
+from music.models import Genre, Label
 
 
 def index(request):
@@ -35,3 +35,12 @@ def signup(request):
     else:
         form = SignupForm()
     return render(request, 'registration/signup.html', {'form': form})
+
+
+class NewLabel(generic.CreateView):
+    model = Label
+    fields = ("label",)
+    template_name = "music/new-label.html"
+    context_object_name = "new-label"
+    success_url = "/"
+
