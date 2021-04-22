@@ -26,5 +26,6 @@ urlpatterns = [
     path("", RedirectView.as_view(url="music/", permanent=True)),
 
 ]
-urlpatterns += static(settings.STATIC_ROOT, document_type=settings.STATIC_URL)
+urlpatterns += static(settings.STATIC_URL, document_type=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
