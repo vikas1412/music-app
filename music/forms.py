@@ -23,13 +23,15 @@ class NewMusicForm(forms.ModelForm):
 
     def clean(self):
         cleaned_data = super(NewMusicForm, self).clean()
-        print(cleaned_data['audio_file'])
+        title = cleaned_data.get("title")
+        audio_file = cleaned_data.get("audio_file")
 
         errors = {}
-        if len(cleaned_data["title"]) < 7:
-            errors['title'] = _("Length of song name must be greater than 5 Characters")
-        if cleaned_data["audio_file"] is None:
-            errors["audio_file"] = _("You must also upload a music file.")
+        if len(str(title)) < 7:
+            raise ValidationError(_("Length of song name must be greater than 5 Characters"))
+
+        if audio_file is None:
+            raise ValidationError(_("You must also upload a music file."))
 
         if errors:
             raise ValidationError(errors)
