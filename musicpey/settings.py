@@ -25,7 +25,7 @@ SECRET_KEY = 'wl4enukqw0k9w=18hj8@!5ag!jf8)+t1!^i7+=@$2rdb6j=1a8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'musicpey.pythonanywhere.com']
 
 
 # Application definition
