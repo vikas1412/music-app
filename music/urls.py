@@ -11,4 +11,12 @@ urlpatterns = [
 
     path("new/label/", views.NewLabel.as_view(), name="new-label"),
 
+    path("all/", views.MusicList.as_view(), name="musics"),
+
+    path("new/", views.new_music, name="new-music"),
+
+    path("update/<int:pk>/", views.update_music, name="update-music"),
+
+    path("open/<slug:slug>/", views.MusicDetail.as_view(), name="music"),
+
 ]
