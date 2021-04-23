@@ -1,6 +1,10 @@
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.urls import reverse
+from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
+import string
+import random
 
 
 class Genre(models.Model):
@@ -48,13 +52,22 @@ class Album(models.Model):
         return self.title
 
 
+def rand_slug():
+    return ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(6))
+
+
 class Music(models.Model):
-    title = models.CharField(max_length=300, blank=True, null=True)
+    title = models.CharField(max_length=300, null=True)
     audio_file = models.FileField(upload_to=new_music_save, blank=True, null=True)
-    slug = models.SlugField(max_length=100, blank=True, null=True)
+    slug = models.SlugField(max_length=100, unique=True, blank=True, null=True)
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(rand_slug() + "-" + str(self.title))
+        super(Music, self).save(*args, **kwargs)
 
 
 class Band(models.Model):
@@ -70,5 +83,3 @@ class Label(models.Model):
 
     def __str__(self):
         return self.label
-
-
