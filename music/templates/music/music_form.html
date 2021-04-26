@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Login - TimeBlog{% endblock %}
+
+{% block style %}
+    input{
+    border:1px solid green;
+    padding:1%;
+    padding-left:12px;
+    font-size:17px
+    }
+    .errorlist{
+    color:red;
+    }
+
+    #id_username, #id_password{
+    padding: 12px;
+    margin-bottom: 22px;
+    font-size: 20px;
+    border: 1px solid lightgrey;
+    background-color:white;
+    margin-top: 1%;
+    }
+
+{% endblock %}
+{% block body %}
+
+    <h2 class="text-center vLargeTextField">Update this music</h2>
+    <hr>
+    <div class="mt-4"></div>
+
+    <form method="post" enctype="multipart/form-data" action="" class="row g-3">
+        {% csrf_token %}
+        <div class="col-md-12">
+            <p>Update your music</p>
+            {{ form.as_p }}
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-sm">Save</button>
+        </div>
+
+    </form>
+    <br>
+    <br>
+    <br>
+    <br>
+{% endblock %}
