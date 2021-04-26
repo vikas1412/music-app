@@ -16,13 +16,13 @@ class SignupForm(UserCreationForm):
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2',)
 
 
-class NewMusicForm(forms.ModelForm):
+class MusicForm(forms.ModelForm):
     class Meta:
         model = Music
         fields = ("title", "audio_file")
 
     def clean(self):
-        cleaned_data = super(NewMusicForm, self).clean()
+        cleaned_data = super(MusicForm, self).clean()
         title = cleaned_data.get("title")
         audio_file = cleaned_data.get("audio_file")
 
